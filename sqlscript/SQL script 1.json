@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "SELECT * FROM [TokyoOlyampicDB].[dbo].[tbl_athletes]\n\nselect Country, Count(*) as TotalAthlets from tbl_athletes  \ngroup by Country\norder by TotalAthlets DESC\n\n--\nSELECT TeamCountry,\nSUM(Gold) TotalGold,\nSUM(Silver) TotalSilver,\nSUM(Bronze) TotalBronze\nfrom tbl_medals\ngroup by TeamCountry\norder by TotalGold DESC\n\n\naverage_entries_by_gender = entriesGgnder.withColumn(\n    'Avg_Female', entriesGgnder['Female'] / entriesGgnder['Total']\n).withColumn(\n    'Avg_Male', entriesGgnder['Male'] / entriesGgnder['Total']\n)\naverage_entries_by_gender.show()\n\nselect Discipline,\nAVG(Female) Avg_Female,\nAVG(Male) Avg_Male\n from tbl_entriesGender\n group by Discipline",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "TokyoOlyampicDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
